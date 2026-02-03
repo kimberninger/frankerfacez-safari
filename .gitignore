@@ -1,0 +1,9 @@
+# Per-user Xcode state: window layout, breakpoints, and which schemes are
+# shown in the toolbar. Personal to whoever opened the project.
+xcuserdata/
+
+# Build products. xcodebuild writes here when given no derived data path.
+build/
+DerivedData/
+
+.DS_Store
