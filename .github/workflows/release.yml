@@ -18,6 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # Cheap, so it runs before the five minutes of building and notarising.
+      - name: Check the tag against the declared version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: ./Scripts/check-version.sh "$GITHUB_REF_NAME"
+
       # Signing needs the certificate and its private key in a keychain. A
       # throwaway one keeps them out of the runner's default keychain and lets
       # the whole lot be deleted afterwards.
