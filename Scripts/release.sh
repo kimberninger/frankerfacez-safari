@@ -53,12 +53,19 @@ fi
 rm -rf "$OUT"
 mkdir -p "$OUT"
 
+# The project signs with automatic "Apple Development" for day-to-day builds.
+# A release machine only holds the Developer ID certificate, so the identity
+# is named here rather than left to Xcode to resolve against an account.
 echo "==> Archiving"
 xcodebuild -project FrankerFaceZ.xcodeproj \
 	-scheme "FrankerFaceZ (macOS)" \
 	-configuration Release \
 	-destination "platform=macOS" \
 	-archivePath "$ARCHIVE" \
+	CODE_SIGN_STYLE=Manual \
+	CODE_SIGN_IDENTITY="Developer ID Application" \
+	DEVELOPMENT_TEAM="$TEAM_ID" \
+	PROVISIONING_PROFILE_SPECIFIER="" \
 	archive
 
 echo "==> Exporting with Developer ID"
