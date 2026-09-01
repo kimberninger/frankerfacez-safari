@@ -11,6 +11,10 @@ jobs:
   release:
     runs-on: macos-15
 
+    # Attaching the zip to a Release means writing to the repository.
+    permissions:
+      contents: write
+
     steps:
       - uses: actions/checkout@v7
 
@@ -53,6 +57,21 @@ jobs:
           name: FrankerFaceZ
           path: build/release/FrankerFaceZ.zip
           if-no-files-found: error
+
+      # A run started by hand leaves only the artifact, which expires. A tagged
+      # run also publishes a Release, so the zip stays downloadable from the
+      # repository's front page.
+      - name: Publish the Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          ASSET="build/release/FrankerFaceZ-$GITHUB_REF_NAME.zip"
+          mv build/release/FrankerFaceZ.zip "$ASSET"
+          gh release create "$GITHUB_REF_NAME" "$ASSET" \
+            --title "$GITHUB_REF_NAME" \
+            --generate-notes
 
       - name: Remove the signing keychain
         if: always()
