@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>method</key>
+	<string>developer-id</string>
+
+	<key>teamID</key>
+	<string>43PYD54WZT</string>
+
+	<!-- Manual signing picks the certificate straight out of the keychain,
+	     so this works on a CI runner that has no Apple account signed in. -->
+	<key>signingStyle</key>
+	<string>manual</string>
+
+	<key>signingCertificate</key>
+	<string>Developer ID Application</string>
+
+	<!-- Safari refuses to load an extension from an app whose signature it
+	     cannot check, so the app is signed for distribution rather than
+	     development and sent to Apple's notary service afterwards. -->
+</dict>
+</plist>
