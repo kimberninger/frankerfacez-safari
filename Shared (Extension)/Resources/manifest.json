@@ -14,20 +14,11 @@
         "512": "images/icon-512.png"
     },
 
-    "background": {
-        "scripts": [ "background.js" ],
-        "type": "module"
-    },
-
     "content_scripts": [{
         "js": [ "content.js" ],
-        "matches": [ "*://example.com/*" ]
+        "matches": [ "*://*.twitch.tv/*" ],
+        "exclude_matches": [ "*://api.twitch.tv/*" ]
     }],
-
-    "action": {
-        "default_popup": "popup.html",
-        "default_icon": "images/toolbar-icon.svg"
-    },
 
     "permissions": [ ]
 }

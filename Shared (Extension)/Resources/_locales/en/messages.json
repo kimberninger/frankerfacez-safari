@@ -4,7 +4,7 @@
         "description": "The display name for the extension."
     },
     "extension_description": {
-        "message": "This is FrankerFaceZ. You should tell us what your extension does here.",
+        "message": "FrankerFaceZ gives Twitch users custom chat emotes and introduces new features to improve the viewing experience.",
         "description": "Description of what the extension does."
     }
 }
