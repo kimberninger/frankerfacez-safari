@@ -12,7 +12,7 @@ jobs:
     runs-on: macos-15
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # Signing needs the certificate and its private key in a keychain. A
       # throwaway one keeps them out of the runner's default keychain and lets
@@ -48,7 +48,7 @@ jobs:
           NOTARY_PASSWORD: ${{ secrets.NOTARY_PASSWORD }}
         run: ./Scripts/release.sh
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: FrankerFaceZ
           path: build/release/FrankerFaceZ.zip
